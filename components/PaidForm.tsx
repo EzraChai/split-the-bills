@@ -22,11 +22,11 @@ export const itemSchema = z.object({
 });
 
 export const additionalFeeSchema = z.object({
-  tax: z.number().optional(),
-  serviceTax: z.number().optional(),
-  deliveryFee: z.number().optional(),
-  roundingAdjustment: z.number().optional(),
-  discount: z.number().optional(),
+  tax: z.number().positive().optional(),
+  serviceTax: z.number().positive().optional(),
+  deliveryFee: z.number().positive().optional(),
+  roundingAdjustment: z.number().min(0).max(9).optional(),
+  discount: z.number().min(0).max(100).optional(),
 });
 
 export const personSchema = z.object({

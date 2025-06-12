@@ -121,15 +121,16 @@ export default function PersonInfo({
                   quantity: 1,
                 })
               }
-              className="col-span-3 col-start-1 "
+              className="col-span-12 lg:col-span-4 col-start-1 "
               type="button"
+              variant={"ghost"}
             >
-              + Add another item
+              + Add Item
             </Button>
-            <div className="col-span-6 flex items-center justify-end ">
+            <div className="mt-6 lg:mt-0 col-span-5 flex items-center lg:justify-end ">
               <p>Total</p>
             </div>
-            <div className="ml-4 col-span-3 col-end-[-1] flex items-center">
+            <div className="mt-6 lg:mt-0 ml-4 col-span-6 lg:col-span-3 col-end-[-1] flex justify-end lg:justify-start items-center">
               <p className="ml-4  text-xl ">RM {totalPrice.toFixed(2)}</p>
             </div>
           </div>

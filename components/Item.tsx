@@ -69,13 +69,27 @@ export default function Item({
   return (
     <div
       key={item.itemName}
-      className={`grid grid-cols-12 gap-2 ${itemIndex !== 0 && "mt-4"}`}
+      className={`relative grid grid-cols-12 gap-2 ${
+        itemIndex !== 0 && "mt-12 lg:mt-4"
+      }`}
     >
+      <div className="absolute -right-3 -top-[10px] z-20 lg:hidden">
+        {itemIndex !== 0 && (
+          <Button
+            type="button"
+            variant="ghost"
+            onClick={() => removeItem(itemIndex)}
+          >
+            <LucideX className="h-4 w-4" />
+          </Button>
+        )}
+      </div>
+
       <FormField
         control={form.control}
         name={`infos.${personIndex}.items.${itemIndex}.itemName`}
         render={({ field }) => (
-          <FormItem className="col-span-4">
+          <FormItem className="col-span-12 lg:col-span-4">
             <FormLabel>Item Name</FormLabel>
             <FormControl>
               <Input {...field} />
@@ -88,7 +102,7 @@ export default function Item({
         control={form.control}
         name={`infos.${personIndex}.items.${itemIndex}.price`}
         render={({ field }) => (
-          <FormItem className="col-span-3">
+          <FormItem className="col-span-6 lg:col-span-3">
             <FormLabel>Price</FormLabel>
             <FormControl>
               <Input
@@ -107,12 +121,13 @@ export default function Item({
           </FormItem>
         )}
       />
+      <div className="col-span-2 lg:hidden"></div>
 
       <FormField
         control={form.control}
         name={`infos.${personIndex}.items.${itemIndex}.quantity`}
         render={({ field }) => (
-          <FormItem className="col-span-2">
+          <FormItem className="col-span-4 lg:col-span-2">
             <FormLabel>Quantity</FormLabel>
             <FormControl>
               <Input
@@ -128,17 +143,20 @@ export default function Item({
           </FormItem>
         )}
       />
-      <div className="col-span-3 px-2 flex items-baseline-last justify-between">
-        <p className="ml-4 text-xl"> RM {itemTotal.toFixed(2)}</p>
-        {itemIndex !== 0 && (
-          <Button
-            type="button"
-            variant="ghost"
-            onClick={() => removeItem(itemIndex)}
-          >
-            <LucideX className="h-4 w-4" />
-          </Button>
-        )}
+      <div className=" col-span-12 lg:col-span-3 px-2 flex items-baseline-last justify-end lg:justify-between">
+        <p className="lg:ml-4  text-md lg:text-xl">RM {itemTotal.toFixed(2)}</p>
+        <div className="hidden lg:block">
+          {itemIndex !== 0 && (
+            <Button
+              type="button"
+              variant="ghost"
+              className=" lg:block"
+              onClick={() => removeItem(itemIndex)}
+            >
+              <LucideX className="h-4 w-4" />
+            </Button>
+          )}
+        </div>
       </div>
     </div>
   );

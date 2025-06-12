@@ -1,4 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Savate:ital,wght@1,900&display=swap");
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -111,13 +110,6 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.552 0.016 285.938);
-}
-
-.savate {
-  font-family: "Savate", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 900;
-  font-style: italic;
 }
 
 @layer base {

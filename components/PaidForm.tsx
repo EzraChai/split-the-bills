@@ -39,7 +39,6 @@ export const formSchema = z.object({
   additionalFees: additionalFeeSchema.optional(),
 });
 
-// Infer the TypeScript type from the schema
 export type FormData = z.infer<typeof formSchema>;
 
 export default function PaidForm() {
@@ -105,21 +104,21 @@ export default function PaidForm() {
       deliveryFee;
     currentTotalPrice *= 1 - discount / 100;
     if (currentTotalPrice < 0) {
-      return 0; // Ensure total price does not go below zero
+      return 0;
     }
-    const roundedTotal = roundToNearest0_05(currentTotalPrice); // 10.00
+    const roundedTotal = roundToNearest0_05(currentTotalPrice);
     const adjustment = roundedTotal - currentTotalPrice;
     if (adjustment > 0) {
-      return currentTotalPrice + roundingAdjustment; // If adjustment is negative, it means we need to reduce the total
+      return currentTotalPrice + roundingAdjustment;
     } else {
-      return currentTotalPrice - roundingAdjustment; // If adjustment is positive, we just return the rounded total
+      return currentTotalPrice - roundingAdjustment;
     }
   }, [tax, serviceTax, deliveryFee, roundingAdjustment, discount, subtotal]);
 
   const onSubmit = (data: FormData) => {
-    setPayPrice([]); // Reset payPrice before calculating new values
+    setPayPrice([]);
     if (data.infos.length === 0) {
-      return; // No persons to calculate
+      return;
     }
 
     data.infos.forEach((person) => {
@@ -158,11 +157,12 @@ export default function PaidForm() {
     control: form.control,
     name: "infos",
   });
+
   return (
     <>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
-          <div className="max-w-4xl mx-auto p-4 ">
+          <div className="max-w-4xl mx-auto p-2 sm:p-4">
             {personFields.map((person, personIndex) => (
               <PersonInfo
                 key={person.id}
@@ -173,7 +173,7 @@ export default function PaidForm() {
               />
             ))}
 
-            <div className="p-4 max-w-sm mx-auto">
+            <div className="mt-4 lg:mt-0 sm:p-4 max-w-sm mx-auto">
               <Button
                 onClick={() =>
                   addPerson({
@@ -184,16 +184,16 @@ export default function PaidForm() {
                 className="w-full"
                 type="button"
               >
-                + Add another person
+                + Add Person
               </Button>
             </div>
-            <div className="flex items-baseline  gap-4 justify-end mt-8">
+            <div className="flex flex-col sm:flex-row items-baseline gap-2 sm:gap-4 justify-end mt-8">
               <h2>Subtotal: </h2>
-              <h1 className="text-4xl font-bold text-center sm:text-left">
+              <h1 className="text-2xl lg:text-4xl font-bold text-center sm:text-left">
                 RM {subtotal.toFixed(2)}
               </h1>
             </div>
-            <div className="mt-16 flex flex-row justify-center gap-4 items-center">
+            <div className="mt-8 sm:mt-16 flex flex-row flex-wrap justify-center lg:gap-2 gap-4 items-center">
               <Button
                 onClick={() => {
                   form.setValue("additionalFees.serviceTax", 0);
@@ -204,6 +204,7 @@ export default function PaidForm() {
                 }}
                 variant={`${isClicked.deliveryFee ? "default" : "outline"}`}
                 type="button"
+                className="w-full sm:w-auto"
               >
                 Delivery Fee
               </Button>
@@ -221,6 +222,7 @@ export default function PaidForm() {
                 }}
                 variant={`${isClicked.SSTTax ? "default" : "outline"}`}
                 type="button"
+                className="w-full sm:w-auto"
               >
                 SST Tax
               </Button>
@@ -238,6 +240,7 @@ export default function PaidForm() {
                 }}
                 variant={`${isClicked.serviceTax ? "default" : "outline"}`}
                 type="button"
+                className="w-full sm:w-auto"
               >
                 Service Tax
               </Button>
@@ -251,6 +254,7 @@ export default function PaidForm() {
                 }}
                 variant={`${isClicked.discount ? "default" : "outline"}`}
                 type="button"
+                className="w-full sm:w-auto"
               >
                 Discount
               </Button>
@@ -266,23 +270,24 @@ export default function PaidForm() {
                   isClicked.roundingAdjustment ? "default" : "outline"
                 }`}
                 type="button"
+                className="w-full sm:w-auto"
               >
                 Rounding Adjustment
               </Button>
             </div>
-            <div className=" flex justify-end mt-8">
+            <div className="flex justify-center mt-8">
               {(isClicked.SSTTax === true ||
                 isClicked.deliveryFee === true ||
                 isClicked.serviceTax === true ||
                 isClicked.discount === true ||
                 isClicked.roundingAdjustment === true) && (
-                <Card className="max-w-sm">
+                <Card className="w-full max-w-sm">
                   <CardHeader className="text-center">
                     Additional Fees
                   </CardHeader>
-                  <CardContent className="space-y-4 p-4 ">
+                  <CardContent className="space-y-4 p-2 sm:p-4 ">
                     {isClicked.deliveryFee && (
-                      <div className="grid grid-cols-3 items-center gap-4">
+                      <div className="grid grid-cols-3  items-center gap-2 sm:gap-4">
                         <div className="flex justify-end">
                           <p>Delivery Fee:</p>
                         </div>
@@ -298,7 +303,7 @@ export default function PaidForm() {
                                   step="0.01"
                                   placeholder="0.00"
                                   {...field}
-                                  value={field.value === 0 ? "" : field.value} // allows clearing
+                                  value={field.value === 0 ? "" : field.value}
                                   onChange={(e) =>
                                     field.onChange(
                                       e.target.value === ""
@@ -306,36 +311,37 @@ export default function PaidForm() {
                                         : parseFloat(e.target.value)
                                     )
                                   }
+                                  className="w-full"
                                 />
                               </FormControl>
                             )}
                           />
                         </div>
-                        <div className="flex items-center mr-8">
+                        <div className="flex items-end sm:items-center ml-4 sm:ml-0 sm:mr-8">
                           RM {deliveryFee.toFixed(2)}
                         </div>
                       </div>
                     )}
                     {isClicked.SSTTax && (
-                      <div className="grid grid-cols-3 items-center gap-4">
+                      <div className="grid grid-cols-3 items-center gap-2 sm:gap-4">
                         <div className="flex justify-end">
                           <p>SST Tax:</p>
                         </div>
-                        <p>10%</p>
-                        <div className="flex items-center mr-8">
-                          RM
+                        <p className="text-right sm:text-left">10%</p>
+                        <div className="flex items-end sm:items-center ml-4 sm:ml-0 sm:mr-8">
+                          RM{" "}
                           {(((subtotal + deliveryFee) * tax) / 100).toFixed(2)}
                         </div>
                       </div>
                     )}
                     {isClicked.serviceTax && (
-                      <div className="grid grid-cols-3 items-center gap-4">
+                      <div className="grid grid-cols-3 items-center gap-2 sm:gap-4">
                         <div className="flex justify-end">
                           <p>Service Tax:</p>
                         </div>
-                        <p>6%</p>
-                        <div className="flex items-center mr-8">
-                          RM
+                        <p className="text-right sm:text-left">6%</p>
+                        <div className="flex items-center ml-4 sm:ml-0 sm:mr-8">
+                          {"RM "}
                           {(
                             ((subtotal + deliveryFee) * serviceTax) /
                             100
@@ -345,7 +351,7 @@ export default function PaidForm() {
                     )}
 
                     {isClicked.discount && (
-                      <div className="grid grid-cols-3 items-center gap-4">
+                      <div className="grid grid-cols-3 items-center gap-2 sm:gap-4">
                         <div className="flex justify-end">
                           <p>Discount:</p>
                         </div>
@@ -358,7 +364,7 @@ export default function PaidForm() {
                                 <Input
                                   {...field}
                                   type="number"
-                                  value={field.value === 0 ? "" : field.value} // allows clearing
+                                  value={field.value === 0 ? "" : field.value}
                                   onChange={(e) =>
                                     field.onChange(
                                       e.target.value === ""
@@ -366,6 +372,7 @@ export default function PaidForm() {
                                         : parseInt(e.target.value)
                                     )
                                   }
+                                  className="w-full"
                                 />
                               </FormControl>
                             )}
@@ -373,8 +380,8 @@ export default function PaidForm() {
                           <p>%</p>
                         </div>
 
-                        <div className="flex items-center mr-8">
-                          RM
+                        <div className="flex items-center ml-4 sm:ml-0 sm:mr-8">
+                          {"RM "}
                           {(
                             ((subtotal + deliveryFee + serviceTax + tax) *
                               discount) /
@@ -384,7 +391,7 @@ export default function PaidForm() {
                       </div>
                     )}
                     {isClicked.roundingAdjustment && (
-                      <div className="grid grid-cols-3 items-center gap-4">
+                      <div className="grid grid-cols-3 items-center gap-2 sm:gap-4">
                         <div className="flex justify-end">
                           <p className="text-right">Rounding Adjustment:</p>
                         </div>
@@ -400,7 +407,7 @@ export default function PaidForm() {
                                   type="number"
                                   placeholder="0"
                                   {...field}
-                                  value={field.value === 0 ? "" : field.value} // allows clearing
+                                  value={field.value === 0 ? "" : field.value}
                                   onChange={(e) =>
                                     field.onChange(
                                       e.target.value === ""
@@ -413,8 +420,9 @@ export default function PaidForm() {
                             )}
                           />
                         </div>
-                        <div className="flex items-center mr-8">
-                          RM {roundingAdjustment.toFixed(2)}
+                        <div className="flex items-center ml-4 sm:ml-0 sm:mr-8">
+                          {"RM "}
+                          {roundingAdjustment.toFixed(2)}
                         </div>
                       </div>
                     )}
@@ -423,14 +431,14 @@ export default function PaidForm() {
               )}
             </div>
 
-            <div className="flex items-baseline gap-4 justify-end mt-8">
+            <div className="flex flex-col sm:flex-row items-baseline gap-2 sm:gap-4 justify-end mt-8">
               <h2>Total Paid: </h2>
-              <h1 className="text-4xl font-bold text-center sm:text-left">
+              <h1 className="text-2xl lg:text-4xl font-bold text-center sm:text-left">
                 RM {totalPrice.toFixed(2)}
               </h1>
             </div>
           </div>
-          <div className="">
+          <div>
             <Button type="submit" className="w-full">
               Calculate
             </Button>
@@ -440,18 +448,18 @@ export default function PaidForm() {
       <div>
         {payPrice.length > 0 && (
           <div className="mt-12 mb-20">
-            <h1 className=" text-4xl font-bold text-center sm:text-left">
+            <h1 className="text-2xl sm:text-4xl font-bold text-center sm:text-left">
               Total Amount to Pay
             </h1>
-            <div className="flex gap-4 max-w-4xl mx-auto mt-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 max-w-4xl mx-auto mt-8">
               {payPrice.map((person, personIndex) => (
                 <Card
                   key={personIndex}
                   className="flex items-center justify-between p-4"
                 >
                   <CardContent className="flex flex-col justify-center">
-                    <p className="text-bold">{person.username}</p>
-                    <h1 className="text-4xl font-bold text-center sm:text-left">
+                    <p className="font-bold">{person.username}</p>
+                    <h1 className="text-2xl sm:text-4xl font-bold text-center sm:text-left">
                       RM {person.total}
                     </h1>
                   </CardContent>

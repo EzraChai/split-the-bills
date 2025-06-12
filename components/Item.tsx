@@ -102,7 +102,7 @@ export default function Item({
         control={form.control}
         name={`infos.${personIndex}.items.${itemIndex}.price`}
         render={({ field }) => (
-          <FormItem className="col-span-6 lg:col-span-3">
+          <FormItem className="col-span-8 lg:col-span-3">
             <FormLabel>Price</FormLabel>
             <FormControl>
               <Input
@@ -121,7 +121,6 @@ export default function Item({
           </FormItem>
         )}
       />
-      <div className="col-span-2 lg:hidden"></div>
 
       <FormField
         control={form.control}

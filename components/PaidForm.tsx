@@ -288,7 +288,7 @@ export default function PaidForm() {
                   <CardContent className="space-y-4 p-2 sm:p-4 ">
                     {isClicked.deliveryFee && (
                       <div className="grid grid-cols-3  items-center gap-2 sm:gap-4">
-                        <div className="flex justify-end">
+                        <div className="col-span-3 sm:col-span-1 flex justify-end">
                           <p>Delivery Fee:</p>
                         </div>
                         <div className="flex items-center gap-2">
@@ -324,7 +324,7 @@ export default function PaidForm() {
                     )}
                     {isClicked.SSTTax && (
                       <div className="grid grid-cols-3 items-center gap-2 sm:gap-4">
-                        <div className="flex justify-end">
+                        <div className="col-span-3 sm:col-span-1 flex justify-end">
                           <p>SST Tax:</p>
                         </div>
                         <p className="text-right sm:text-left">10%</p>
@@ -336,7 +336,7 @@ export default function PaidForm() {
                     )}
                     {isClicked.serviceTax && (
                       <div className="grid grid-cols-3 items-center gap-2 sm:gap-4">
-                        <div className="flex justify-end">
+                        <div className="col-span-3 sm:col-span-1 flex justify-end">
                           <p>Service Tax:</p>
                         </div>
                         <p className="text-right sm:text-left">6%</p>
@@ -352,7 +352,7 @@ export default function PaidForm() {
 
                     {isClicked.discount && (
                       <div className="grid grid-cols-3 items-center gap-2 sm:gap-4">
-                        <div className="flex justify-end">
+                        <div className="col-span-3 sm:col-span-1 flex justify-end">
                           <p>Discount:</p>
                         </div>
                         <div className="flex items-center gap-2">
@@ -392,7 +392,7 @@ export default function PaidForm() {
                     )}
                     {isClicked.roundingAdjustment && (
                       <div className="grid grid-cols-3 items-center gap-2 sm:gap-4">
-                        <div className="flex justify-end">
+                        <div className="col-span-3 sm:col-span-1 flex justify-end">
                           <p className="text-right">Rounding Adjustment:</p>
                         </div>
                         <div className="flex items-center justify-around ">

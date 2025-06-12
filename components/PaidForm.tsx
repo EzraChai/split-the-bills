@@ -247,6 +247,7 @@ export default function PaidForm() {
 
               <Button
                 onClick={() => {
+                  form.setValue("additionalFees.discount", 0);
                   setIsClicked((prev) => ({
                     ...prev,
                     discount: !prev.discount,
@@ -281,7 +282,7 @@ export default function PaidForm() {
                 isClicked.serviceTax === true ||
                 isClicked.discount === true ||
                 isClicked.roundingAdjustment === true) && (
-                <Card className="w-full max-w-sm">
+                <Card className="w-full max-w-sm overflow-hidden">
                   <CardHeader className="text-center">
                     Additional Fees
                   </CardHeader>

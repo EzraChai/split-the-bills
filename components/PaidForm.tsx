@@ -22,9 +22,9 @@ export const itemSchema = z.object({
 });
 
 export const additionalFeeSchema = z.object({
-  tax: z.number().positive().optional(),
-  serviceTax: z.number().positive().optional(),
-  deliveryFee: z.number().positive().optional(),
+  tax: z.number().min(0).optional(),
+  serviceTax: z.number().min(0).optional(),
+  deliveryFee: z.number().min(0).optional(),
   roundingAdjustment: z.number().min(0).max(9).optional(),
   discount: z.number().min(0).max(100).optional(),
 });
@@ -116,6 +116,7 @@ export default function PaidForm() {
   }, [tax, serviceTax, deliveryFee, roundingAdjustment, discount, subtotal]);
 
   const onSubmit = (data: FormData) => {
+    console.log("Form Data:", data);
     setPayPrice([]);
     if (data.infos.length === 0) {
       return;
@@ -139,6 +140,7 @@ export default function PaidForm() {
       currentTotalWithTaxAndDiscount *= 1 - discount / 100;
       currentTotalWithTaxAndDiscount +=
         (currentTotalWithTaxAndDiscount / totalPrice) * roundingAdjustment;
+
       setPayPrice((prev) => [
         ...prev,
         {

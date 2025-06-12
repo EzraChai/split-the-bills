@@ -100,7 +100,7 @@ export default function PersonInfo({
         )}
       </div>
 
-      <Card className="mt-2">
+      <Card className="mt-2 overflow-hidden ">
         <CardContent className="space-y-2 p-4">
           {itemFields.map((item, itemIndex) => (
             <Item

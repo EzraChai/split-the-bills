@@ -399,7 +399,7 @@ export default function PaidForm() {
                         <div className="col-span-3 sm:col-span-1 flex sm:justify-end">
                           <p className="sm:text-right">Rounding Adjustment:</p>
                         </div>
-                        <div className="flex col-span-2 sm:col-span-1 items-center justify-around ">
+                        <div className="flex col-span-2 sm:col-span-1 items-center justify-end sm:justify-around ">
                           <p>RM 0.0</p>
                           <FormField
                             control={form.control}

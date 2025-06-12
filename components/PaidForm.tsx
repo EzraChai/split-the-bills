@@ -324,10 +324,10 @@ export default function PaidForm() {
                     )}
                     {isClicked.SSTTax && (
                       <div className="grid grid-cols-3 items-center gap-2 sm:gap-4">
-                        <div className="col-span-3 sm:col-span-1 flex  sm:justify-end">
+                        <div className="col-span-1 flex  sm:justify-end">
                           <p>SST Tax:</p>
                         </div>
-                        <p className="text-right col-span-2 sm:col-span-1 sm:text-left">
+                        <p className="text-right col-span-1 sm:text-left">
                           10%
                         </p>
                         <div className="flex items-end sm:items-center ml-4 sm:ml-0 sm:mr-8">
@@ -338,12 +338,10 @@ export default function PaidForm() {
                     )}
                     {isClicked.serviceTax && (
                       <div className="grid grid-cols-3 items-center gap-2 sm:gap-4">
-                        <div className="col-span-3 sm:col-span-1 flex  sm:justify-end">
+                        <div className="col-span-1 flex  sm:justify-end">
                           <p>Service Tax:</p>
                         </div>
-                        <p className="text-right col-span-2 sm:col-span-1 sm:text-left">
-                          6%
-                        </p>
+                        <p className="text-right col-span-1 sm:text-left">6%</p>
                         <div className="flex items-center ml-4 sm:ml-0 sm:mr-8">
                           {"RM "}
                           {(

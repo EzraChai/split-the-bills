@@ -291,7 +291,7 @@ export default function PaidForm() {
                         <div className="col-span-3 sm:col-span-1 flex  sm:justify-end">
                           <p>Delivery Fee:</p>
                         </div>
-                        <div className="flex items-center gap-2">
+                        <div className="flex col-span-2 sm:col-span-1 items-center gap-2">
                           <p>RM</p>
                           <FormField
                             control={form.control}
@@ -327,7 +327,9 @@ export default function PaidForm() {
                         <div className="col-span-3 sm:col-span-1 flex  sm:justify-end">
                           <p>SST Tax:</p>
                         </div>
-                        <p className="text-right sm:text-left">10%</p>
+                        <p className="text-right col-span-2 sm:col-span-1 sm:text-left">
+                          10%
+                        </p>
                         <div className="flex items-end sm:items-center ml-4 sm:ml-0 sm:mr-8">
                           RM{" "}
                           {(((subtotal + deliveryFee) * tax) / 100).toFixed(2)}
@@ -339,7 +341,9 @@ export default function PaidForm() {
                         <div className="col-span-3 sm:col-span-1 flex  sm:justify-end">
                           <p>Service Tax:</p>
                         </div>
-                        <p className="text-right sm:text-left">6%</p>
+                        <p className="text-right col-span-2 sm:col-span-1 sm:text-left">
+                          6%
+                        </p>
                         <div className="flex items-center ml-4 sm:ml-0 sm:mr-8">
                           {"RM "}
                           {(
@@ -355,7 +359,7 @@ export default function PaidForm() {
                         <div className="col-span-3 sm:col-span-1 flex sm:justify-end">
                           <p>Discount:</p>
                         </div>
-                        <div className="flex items-center gap-2">
+                        <div className="flex col-span-2 sm:col-span-1 items-center gap-2">
                           <FormField
                             control={form.control}
                             name={`additionalFees.discount`}
@@ -392,10 +396,10 @@ export default function PaidForm() {
                     )}
                     {isClicked.roundingAdjustment && (
                       <div className="grid grid-cols-3 items-center gap-2 sm:gap-4">
-                        <div className="col-span-3 sm:col-span-1 flex  sm:justify-end">
+                        <div className="col-span-3 sm:col-span-1 flex sm:justify-end">
                           <p className="sm:text-right">Rounding Adjustment:</p>
                         </div>
-                        <div className="flex items-center justify-around ">
+                        <div className="flex col-span-2 sm:col-span-1 items-center justify-around ">
                           <p>RM 0.0</p>
                           <FormField
                             control={form.control}

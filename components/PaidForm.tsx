@@ -143,7 +143,10 @@ export default function PaidForm() {
         ...prev,
         {
           username: person.username,
-          total: currentTotalWithTaxAndDiscount.toFixed(2),
+          total: (isNaN(currentTotalWithTaxAndDiscount)
+            ? 0
+            : currentTotalWithTaxAndDiscount
+          ).toFixed(2),
         },
       ]);
     });

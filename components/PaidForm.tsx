@@ -463,9 +463,9 @@ export default function PaidForm() {
               {payPrice.map((person, personIndex) => (
                 <Card
                   key={personIndex}
-                  className="flex items-center justify-between p-4"
+                  className="flex items-center justify-between"
                 >
-                  <CardContent className="flex flex-col justify-center">
+                  <CardContent className="flex flex-col justify-center p-4">
                     <p className="font-bold">{person.username}</p>
                     <h1 className="text-2xl sm:text-4xl font-bold text-center sm:text-left">
                       RM {person.total}
